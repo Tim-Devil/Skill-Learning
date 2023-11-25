@@ -30,4 +30,101 @@ shell：壳。一个应用程序。它本身也是用户与系统内核交互的
 接受+解析输入，交给操作系统执行，并返回输出。
 比较好用的shell：zsh（z shell）
 pwsh 7（问题来了，powershell和pwsh有什么区别？）
+
+\noindent
+对于命令行来说，也可以用命令行中查看网页。他其实就是一种操作计算机的方式。对于ssh里链接服务器，那更是如此。\\
+\begin{center}
+    dev cpp -> vscode \& gcc\\
+\end{center}
+这种转换可以让你熟知编译原理。另外你最好需要知道json，否则每次都配就很恶心。\\
+
+\noindent
+插件部分:\\
+oh my zsh, powerlevel10k(p10k), git, sudo, z, zsh-autosuggestions, zsh-syntax-highlighting\\
+可参看tony crane的博客。\\
+
+\noindent
+shell的用法：\\
+命令与位置非常有关系。rm -rf ./ 这个命令让你可以删除当前目录下的所有文件。~则代表home。\\
+另外，*nix系的路径分隔符是/，而windows是\textbackslash。\\
+*nix系没有分盘，只有一个根目录。，但是windows则有盘的概念\\
+
+\noindent
+prompt：命令提示符，就是跳出来的那一行，告诉我们信息（权限和所在目录）并等待我们输入。\\
+
+\noindent
+相应的一些命令：\\
+pwd：获取当前路径。\\
+cd：切换路径 ../代表上一级目录，./代表当前目录，/代表根目录，~代表home目录。\\
+以根目录（/）为起始的路径叫做绝对路径，而以当前目录为起始的路径叫做相对路径。\\
+
+\noindent
+ls：列出当前目录下的文件。\\
+\qquad -a：列出所有文件，包括隐藏文件。\\
+\qquad -l：列出详细信息。包含权限，大小，时间。\\
+\qquad 我们也可以用-al和-a -l来做。\\
+
+\noindent
+mkdir：创建目录。\\
+touch filename：创建文件。这里可以跟上多个文件名。\\
+
+\noindent
+cp src dest：复制文件。不加参数是不能复制文件夹的。\\
+这里的dest两种情况：\\
+1. dest为目录，则复制到该目录下。\\
+2. dest为文件，则复制并重命名，并归入当前目录。本质上和1是一样的，这里用到的是相对路径。\\
+\qquad -r：递归复制。\\
+
+\noindent
+mv src dest：移动文件。它也可以被用于重命名\\
+\qquad -r：递归移动。\\
+
+\noindent
+rm filename：删除文件。\\
+\qquad -r：递归删除。\\
+\qquad -f：强制删除。\\
+\qquad -rf：强制递归删除。这命令非常危险。\\
+
+\noindent
+find path -name filename：在path下查找文件名为filename的文件。\\
+\qquad 模糊查找*也可以在此处使用。但是要用引号（单双都可以）括起来。\\
+
+\noindent
+cat filename：查看文件内容。将会在终端中全部打出。\\
+\qquad *concatenate的缩写。\\
+\qquad 也可以用于拼接文件。但不是真的拼在了一起，只是一起输出了而已。\\
+\qquad -n：显示行号。\\
+
+\noindent
+head filename：查看文件头部。默认显示前10行。\\
+\qquad -n：显示前n行。\\
+
+\noindent
+tail filename：查看文件尾部。默认显示后10行。\\
+\qquad -n：显示后n行。\\
+
+\noindent
+less filename：分页显示文件内容。\\
+\qquad 可以实现查找和更好的翻页，还可以使用滚轮。\\
+
+\noindent
+more filename：分页显示文件内容。\\
+\qquad 这个就just so so了。\\
+
+\noindent
+hexdump filename：以16进制显示文件内容。\\
+\qquad -C：以16进制显示文件内容，并且显示ASCII码。\\
+\qquad -n N：只显示前N个字节。\\
+
+\noindent
+其他文档：\\
+man xxx：查看xxx的帮助文档。他的功能强大到C语言的函数都能看。\\
+echo xxx：输出xxx。\\
+
+\noindent
+clear：清屏。\\
+whoami：查看当前用户。\\
+
+\noindent
+
 \end{document}
