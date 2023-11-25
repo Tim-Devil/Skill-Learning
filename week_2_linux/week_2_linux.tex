@@ -149,11 +149,56 @@ wget：下载文件。\\
 \\
 
 \noindent
-重定向：
-标准输入流stdin(standard input)
-标准输出流stdout(standard output)
-标准错误流stderr(standard error)
-一般所说的是将标准输出流重定向到某个文件，也就是：
-hello world > a.txt
-这样就将hello world这个字符串写入到了a.txt文件中。
+重定向：\\
+
+\noindent
+标准输入流stdin(standard input)\\
+标准输出流stdout(standard output)\\
+标准错误流stderr(standard error)\\
+
+\noindent
+一般所说的是将标准输出流重定向到某个文件，也就是：\\
+echo hello world > a.txt\\
+这样就将hello world这个字符串写入到了a.txt文件中。注意这是覆盖的。\\
+同时，>>则是追加。它意味着不覆盖源文件，而是添加到末尾。\\
+
+\noindent
+反过来也可以将文件的内容重定向到标准输入流中：\\
+cat < a.txt\\
+这是一种给程序提供输入的方式。\\
+cat file1 file2 > file3\\
+这则是将2个文件拼接，输出的结果存入file3的操作。\\
+
+\noindent
+另外，2>则是将标准错误流重定向到某个文件。\\
+
+\noindent
+最后，还可以用\&>将标准输出流和标准错误流一起重定向。\\
+例如，echo hello world \&> a.txt\\
+
+\begin{center}
+    ——————————————————————————————————————————————————\\
+\end{center}
+
+\noindent
+重定向：将文件输入到命令/将命令输出到文件\\
+管道：将命令的输出作为另一个命令的输入\\
+管道操作符：|\\
+利用管道操作符将数个命令连接起来，形成一个命令序列，以完成较为复杂的任务。\\
+
+\noindent
+例子：\\
+echo Hello world\\
+这是用echo命令输出hello world。\\
+echo Hello world | cat\\
+这是将echo命令的输出作为cat命令的输入，最后的输出是由cat完成的\\
+实用案例：\\
+ls | tail -n 5\\
+输出前5个文件。这就是很巧妙的组合。\\
+ls | head -n 15 | tail -n 5\\
+这就更加巧妙了，先输出头15个，然后取后五个，相当于取了11-15文件。\\
+ls | less\\
+这就是分页显示文件的方法。真是妙。\\
+ls | grep 'a'\\
+这就是查找文件名称中带a的方法。\\
 \end{document}
