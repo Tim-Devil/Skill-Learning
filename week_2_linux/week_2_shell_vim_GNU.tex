@@ -4,11 +4,25 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 
+
+\title{Week 2-2: linux shell, Vim \& GNU make}
+\author{Mayrain}
+\date{\today}
+
 \begin{document}
+\maketitle
+
+\begin{center}
+    写在文档最前面：
+\end{center}
+一个有标题的文档需要加上\verb|\maketitle|，否则不会显示标题。我只能说latex真是难伺候的主子。虽然其他的也好不到哪里去就是了，笑。\\
+\\
+\\
 \noindent
 本次学习的内容：\\
 shell，terminal，vim，GNU make\\
 
+\section{Overall}
 \noindent
 注册表：电脑中的巨大数据库，所有的设置都在注册表中有值。32年之后，仍然需要更改注册表。\\
 windows也没有包管理器。windows是闭源软件。\\
@@ -19,12 +33,14 @@ windows不能使用nul作为文件名。至今为止仍然如此。\\
           & ->arduino   \notag
 \end{align}
 
+\section{terminal and shell?}
 \noindent
 有关terminal和shell
 terminal，是一个模拟传统终端的东西。他本质上还是个应用程序，提供了窗口和交互功能的应用程序。\\
 只是terminal他内部运行的是shell而已，shell才是执行命令的。\\
 cmd不算terminal，而算是shell。windows terminal才是。很多系统都会自带terminal的
 
+\subsection{basic knowledge}
 \noindent
 shell：壳。一个应用程序。它本身也是用户与系统内核交互的界面而已。
 接受+解析输入，交给操作系统执行，并返回输出。
@@ -43,6 +59,7 @@ pwsh 7（问题来了，powershell和pwsh有什么区别？）
 oh my zsh, powerlevel10k(p10k), git, sudo, z, zsh-autosuggestions, zsh-syntax-highlighting\\
 可参看tony crane的博客。\\
 
+\subsection{command introduction}
 \noindent
 shell的用法：\\
 命令与位置非常有关系。rm -rf ./ 这个命令让你可以删除当前目录下的所有文件。~则代表home。\\
@@ -150,10 +167,10 @@ diff：比较两个文件的不同。\\
 \noindent
 curl：发送http请求。\\
 wget：下载文件。\\
-\\
-\\
-\\
 
+
+
+\subsection{advanced content:redirection and pipe}
 \noindent
 重定向：\\
 
@@ -207,4 +224,56 @@ ls | less\\
 这就是分页显示文件的方法。真是妙。\\
 ls | grep 'a'\\
 这就是查找文件名称中带a的方法。\\
+
+\section{vim}
+
+Vi->vim，vim是所谓的Vi improved，也就是Vi的改进版。\\
+除此之外还有neovim和lunarvim，还可以在vsc上搭载插件使用vim。出于学习目的我们这里只使用vsc+vim\\
+
+介绍了一些教程，这里不多说了。\\
+
+\noindent
+\section{GNU make}
+
+make：自动化。\\
+只要写一个makefile，就可以通过一句命令自动完成编译，测试，打包，部署等操作。任何命令都可以执行。\\
+
+大致的makefile结构：\\
+\begin{center}
+    target：prerequisites\\
+    command\\
+    ...\\
+    ...\\
+    ...\\
+\end{center}
+这里的target：目标文件/可执行文件/标签\\
+commmand：执行命令，即触发target时执行的shell命令。\\
+\hspace*{2em} 开头加@：不在终端输出命令\\
+\hspace*{2em} 开头加 -：忽略错误，继续执行\\
+.PHONY:clean，phony定义伪目标。\\
+prerequisites：依赖的target\\
+
+\noindent
+用人话来说，就是我们要生成一个main.out，那么我们需要调用main.o 和 aux.o。main.out 目前并不存在，但是这个程序执行完了就有了。\\
+CFLAGS = -std=c99\\
+main.out: main.o aux.o\\
+\hspace*{2em} gcc \quad \$\^ \quad -o \$@ \qquad \$(CFLAGS)\\
+\\
+变量定义：\\
+1. VAR=value：value在使用时才被展开。\\
+2. VAR:=valude：value在定义时就被展开了。\\
+3. VAR？=value：只有在VAR未定义的时候，才做这样的定义。\\
+4. VAR+=value：将value追加到VAR末尾。\\
+\\
+变量引用：\\
+1. \$(VAR) 或者 \${VAR}：引用变量VAR的值。\\
+2. 会以“字符串”形式展开。类似于C中的宏展开。\\
+3. \$（shell command）可以将command的输出结果作为替换值\\
+4. 一些内置变量\$(PATH),\$(MAKE)\\
+\\
+这一段我们还是另学为好，这里学太杂了，好烦。\\
+资料：GNU make 官方文档，和我一起写Makefile\\
+另外我们可能要先学编译原理，然后再学makefile才能符合课程拓扑。\\
+
+另外我们还有一些插件和命令行工具。旨在优化命令行的使用体验。甚至有做C++的解释器，我直呼牛逼。以及一些熟人，ffmpeg\\
 \end{document}
