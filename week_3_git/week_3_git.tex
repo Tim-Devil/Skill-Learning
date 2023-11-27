@@ -2,6 +2,7 @@
 
 \usepackage{ctex}
 \usepackage{graphicx}
+\graphicspath{{pic}}
 \usepackage{amsmath}
 
 \title{Week 3: git}
@@ -85,5 +86,29 @@ https://github.com/angular/angular/blob/main/CONTRIBUTING.md\\
 <Blank Line>\\
 \\
 <footer>\\
+\\
+\subsubsection{Version Name change rules}
+version a.b.c[-d]\\
+a: major version（主版本号，大改，不兼容的API修改。0表示开发阶段，不保证完整性）\\
+b: minor version（次版本号，添加新功能，保持兼容）\\
+c: patch version（修订号，兼容更改以及修正不正确的行为）\\
+d: pre-release version（预发布版本号，代表这个程序是预发布的，实际上只是尝鲜版。顺序是alpha（内测）, beta（公测）, rc.1, rc.2, rc开头的都是预发布。）\\
+\\
+\subsection{Git Branch}
+Branch，也就是分支，是相当于一个岔路指向标。在git中，我们可以创建分支，然后在分支上进行修改，最后将分支合并到主分支上。\\
+如果我们在某个历史版本上做出一个修改，而不添加branch的话，那么当我们想要回到修改的版本时，就会发现我们的指针依然在master这个大branch上移动，而这个修改的版本，除非你记住了他的commit id，否则就无法回到这个版本了。（因为没有路标通向他，所以当到达分叉路口时系统会自动以为只有一条路，也就是master分支）\\
+有两种创建分支的方法：\\
+\begin{itemize}
+    \item git branch <branch name>（基于当前的header，也就是分岔路口）
+    \item git branch <branch name> <branch id>（基于当前所在分支的id提交，也就是根据这条路提交）
+\end{itemize}
+\section{github}
+\noindent
+GithubCLI是一个命令行程序，通过这个程序可以使用命令行操控github。\\
+现在很多没能注意的就是，github的commit需要用签名去验证。在git中会出现一个verfied的图标，证明我使用我的私钥签名，并可以用公钥去验证。对比图如下：\\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{pic1_verfied.png}\\
+\end{figure}
 
 \end{document}
