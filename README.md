@@ -7,3 +7,5 @@ Time to get start. Not you and me, this time it just my trudge.
 
 2023.11.27, finish Chu Kochen academy's "practical skill Learning". Time to move to UCB's class.
 But it is far from racing to it. It is advisable if I learn CS60 series in advance.
+
+If you have any advice, please feel free to tell me!
