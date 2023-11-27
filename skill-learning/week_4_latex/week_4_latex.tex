@@ -5,6 +5,7 @@
 
 \usepackage{amsmath}
 \usepackage{graphicx}
+\graphicspath{pic}
 %对于图片来说，参数有width，height，angle，scale等。
 %若给graphicx或者是文档类赋予参数draft，则不会显示图片，但是会保留图片的位置（一个框，框里有文件名），这样可以加快编译速度。
 \usepackage{ctex}
@@ -157,4 +158,88 @@ listing宏包则可实现代码高亮，但是既然latex自己已经这么好�
 \subsection{tabular}
 \noindent
 相关内容我放在另一个文档。
+\subsection{float block(浮动体)}
+\noindent
+浮动体使得图片和表格脱离文本，独立寻找合适的位置排放。\\
+\begin{itemize}
+    \item 利用figure环境包裹图片
+    \item 利用table环境包裹表格
+\end{itemize}
+一般来说，我们使用浮动体，是为了“让他们自由排版”。一些图片硬和文字一起排版将会使得版面非常难看，因此可以利用浮动体让他们自由排版。等到需要使用的时候我们就加label和ref命令来引用。\\
+（注意，\verb|\pageref{ref}|可以引用页码。）
+所以浮动体+label+ref是一套完整的流程！！！！！\\
+另外也可以加caption命令来添加标题。\\
+（这个过程也叫做交叉引用。）\\
+\\
+一个非常重要的提醒：\\
+\verb|\ref|一定要紧跟在\verb|\caption|的后面，否则图片编号是图1，但是ref引用时将会变成章节号（也就是不能成功引用的意思）\\
+\\
+\begin{verbatim}
+    \begin{figure}[placement]
+        ...
+    \end{figure}
+\end{verbatim}
+placement则是用htbp表示，分别代表here,top,bottom,page。\\
+使用!忽略限制（限制：每页浮动体数量，占用页面比例，浮动体间距）\\
+\\
+另外，对于浮动体来说，还可以使用\verb|\listoffigures|和\verb|\listoftables|来生成浮动体的目录。\\
+\\
+Tip: \verb|\label|可以记录的位置:
+\begin{itemize}
+    \item 章节标题后面紧接着使用
+    \item 行间公式中任意位置
+    \item 有序列表的item后面（必须有序）
+    \item 浮动体caption后面
+    \item 定理环境内部
+\end{itemize}
+注意不记录编号的命令是不能使用的，包括section*这种手动去掉的。
+\subsection{math expression}
+\noindent
+行内公式：\\
+一对\$包裹即可。\\
+也可以用\textbackslash(和\textbackslash)包裹
+\\
+行间公式：
+\begin{itemize}
+    \item 一对\$\$包裹
+    \item \textbackslash[和\textbackslash]包裹
+    \item equation环境。带编号。使用equation*可以不带编号，用\verb|\notag|也可以。
+    \item align环境也可以。
+\end{itemize}
+Tip: 如果说上下公式有联系的话，注意中间不要留空！\\
+公式中空格一定会被忽略！一些手动加空格的方法：
+\begin{enumerate}
+    \item $a\,b\text{使用,}$
+    \item $a\:b\text{使用:}$
+    \item $a\;b\text{使用;}$
+    \item $a\ b\text{使用空格}$
+    \item $a\quad b\text{使用quad}$
+    \item $a\qquad b\text{使用qquad}$
+    \item $a\!b\text{使用!}$
+\end{enumerate}
+以上部分空格分别变大。但是最后一个是负空格，也就是反而缩紧了。\\
+另外，数学模式中，一般输入英文会显示斜体（被视为变量）。对于sin等函数，命令输入可以让他们保持正体。\\
+如果有需要输入的函数（但是函数库里没有），需要使用\verb|\mathrm{text}|命令，也就是数学模式的正体。。。\\
+数学模式中有两种显示方式：\verb|\displaystyle|和\verb|\textstyle|。一般来说前者适用于行间公式，后者适用于行内公式。前者的占用空间较大，后者的占用空间较小，另外在上下标的位置上面可能会有些区别。\\
+如果想要在行内强行使用\verb|\displaystyle|,则将行内公式写作\verb|$\displaystyle \sum_{i=1}^100$|即可。不过可能造成行距混乱。\\
+最后，不要滥用text！而且数学模式中不能用textbf之类的方式搞字体！\\
+一些常用的公式如下图\ref{pic1}所示。注意诸如mod中涉及到的三横等号不要自己瞎写，一定要用公式生成才最规范！\\
+\\
+\begin{figure}[htbp]
+    \includegraphics[scale=0.7]{pic/math-expression.png} \caption{frequently used math expression}\label{pic1}
+\end{figure}
+图中的\verb|\left(|和\verb|\right)|代表自动匹配括号大小。当然也可以用\verb|\left(|和\verb|\right.|这样的方式放弃一边的括号，但是绝对不能不匹配！（不能不写某一侧！）\\
+\\
+对齐模式：align/aligned对齐环境。可使用\verb|\notag|或者\verb|\align*|来取消编号。\\
+aligned本身不自带数学环境！因此需要嵌套进入equation之类的环境才能使用！
+\\
+矩阵模式：参照另一份学习文档。
+\subsection{standard of math expression}
+\begin{enumerate}
+    \item 特殊函数用特殊命令，或者是利用mathrm命令写为正体。能有专门的命令甚至都不能用mathrm！变量以外，全部正体！（尤其是各类算子）
+    \item 正确使用displaystyle以及dfrac（性质一致）
+    \item 注意区分\verb|\colon|以及手打冒号。前者被用于映射（一个标点），后者常被用于集合，例如$\{x:x=1\}$
+    \item left和right的括号要经常用，只要内容不为一个字符高时，就必须要用自适配括号！
+    \item 行间公式之间，如果有关联，不可直接加空行。
+\end{enumerate}
 \end{document}
