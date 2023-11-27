@@ -1,0 +1,97 @@
+\documentclass{article}
+%ctexart, ctexrep, ctexbook等文档类自动支持中文。
+%基础文档类有三种：article, report, book
+%大括号里面也可以填字号，纸张类型，是否双面等。
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{ctex}
+
+\usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
+%使用margin=1in也能达到同样的效果。
+%使用hmargin=1in,vmargin=1in也能达到同样效果
+%在装订双面文档（例如book类），inner是靠近书脊的边，在单页模式下等于left，双页模式下得看单双页。可以用inner和outer参数进行定义
+
+%先用usepackage引入包，然后再\geometry命令填入也可。此时[]变成{}
+
+\usepackage{multicol}
+
+%更多的宏包
+%https://zhuanlan.zhihu.com/p/43981639
+
+\title{week 4: latex}
+\author{Mayrain}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{What is latex}
+\noindent
+latex的前身是tex，是一种排版软件，用于生成高质量的文档，比如科技论文，书籍等。latex是tex的一种宏包，是一种对tex的封装，使得tex更加容易使用。\\
+latex的优点是可以生成高质量的文档，而且可以使用代码的方式来排版文档，可以很方便的生成数学公式，表格，图片等。\\
+latex的缺点是学习曲线比较陡峭，而且不适合用来写小文档，比如笔记等。我用tex做笔记的原因主要是为了熟练掌握其技巧。\\
+以上都是copilot写的，我只是复制粘贴了一下（笑）。\\
+\\
+一般来说发行版就是打包好的套装，包含了latex引擎，宏包，字体等。\\
+也可以直接安装引擎，比如xetex，pdftex。他们起到编译器的作用。编写的方法是随意的，任何一个文本编辑器都可以完成这个事情。\\
+\section{latex command}
+\noindent
+latex的命令以\verb|\|开头。而且对大小写敏感\\
+这里的\verb|\|最好是用verb命令，而不用text或者\verb|\textbackslash|。中者无法实现（命令在大括号中也有效），后者太麻烦了。\\
+latex可以用\{\}限定作用范围，而且也可以用[]表达可选参数。在\{\}中的表达是必选的。\\
+环境就是一种命令！\\
+\section{latex space}
+\noindent
+有关latex中的空格/段落，需要注意：\\
+\begin{itemize}
+    \item 1个或多个空格，latex会当做一个空格处理
+    \item 段首空格不处理。我们必须要用\verb|\hspace{2em}|这样的命令才能使其空格。
+    \item 换行符视为一个空格，也就是说只换行，latex不会换行，必须要再换一行以空出一行。（连续两个换行符，latex会认为是一个段落的结束，会自动空出一行。）
+    \item \verb|\par|或者是空行，latex会认为是一个段落的结束，会自动空出一行。
+    \item \verb|\\ \newline|则是所谓断行，相当于段落内换行，不产生新段落。
+    \item \verb|\newpage \clearpage|则是手动断页，但是前者在双栏状态下左页换右页，还在同一页；后者则是直接该页都不要了。
+\end{itemize}
+\section{latex strange symbol}
+\subsection{quotation symbol}
+\noindent
+latex的重要特点是“非二义性”。在word中，左右引号是自动识别的，但是对于latex中这样的识别仍然不够准确。如果直接键入单/双引号，latex只会将其识别为右引号，而没有左引号。\\
+左引号的出现应当使用反引号，也就是\verb|`|，输入上：``We bands of brothers" 和`We bands of brothers'才是正确的。\\
+不过，双引号也可以使用两个单引号来作为右引号，例如``We bands of brothers''。\\
+如果搞错了，情况就是这样：\\
+"We bands of brothers"\\
+'We bands of brothers'\\
+危险的地方在于这甚至不会报错。
+\subsection{prevent connecting（防止连字）}
+\noindent
+在两个字母中间使用\{\}可以避免连字，例如：\\
+difficult\\
+dif{}f{}icult\\
+下面的单词在两个f，f和i之间加入了\{\}用于规避连字，看起来美观多了。
+\subsection{mandatory distance}
+\noindent
+长度单位有pt, in, cm, mm, em（当前M宽度）, ex（当前x高度）\\
+几种修改：\\
+1. 行距：\verb|\linespread{factor}|。默认行距为1.2倍字体大小。\\
+2. 水平间距：\verb|\hspace{length}|。\\
+\hspace*{2em}\verb|\hspace*{length}|可以规避当只有一边有内容时，距离会被自动吞掉的情况。\\
+\hspace*{2em}\verb|\quad|代表1em，两个q则是2em\\
+\hspace*{2em}\verb|\hspace{\fill}lol|这样的操作则会将lol放在本行最后，中间全部用空格填充。\\
+3. 竖直间距：\verb|\vspace|\\
+\hspace*{2em}也可以使用类似于\verb|\\[1em]|这样的命令来换行时插入垂直间距。\\
+4. 分栏：\\
+全局分栏：\verb|\twocolumn \onecolumn|很明显了\\
+局部分栏：需要引入宏包multicol，然后使用begin包含multicols环境，注释里可以看到。
+
+%\begin{multicols}{2}
+%   [
+%       \section{First Section}
+%       All human things are subject to decay. And when fate summons, Monarchs must obey.
+%   ]
+%   \blindtext\blindtext
+%\end{multicols}
+%\end{document}
+
+%相关链接：https://blog.csdn.net/xovee/article/details/123087349
+\section{docu structure}
+\subsection{Chap. and index}
+\end{document}
