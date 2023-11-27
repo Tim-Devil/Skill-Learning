@@ -49,5 +49,41 @@ angular/angular:CONTRIBUTING.md\\
 \\
 作者的话：\\
 老天，连git的commit的message都在github上有标准化的规定，不得不说这就是程序员的思维：机械而规范。让我想起了github上有名的“how to ask questions wisely”系列。很有意思。\\
+\subsubsection{ADDITION:Commit Message Format}
+*It is totally copy of angular/CONTRIBUTING.md.\\
+\\
+<header>\\
+\\
+Format: -> <Commit Type>(<Commit Scope>): <Short summary>\\
+\\
+Commit Type:\\
+build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)\\
+修改项目构建系统的代码或者外部依赖的改动，例如构建脚本，Dockerfile，package.json，webpack配置等等\\
+ci: Changes to our CI configuration files and scripts (examples: CircleCi, SauceLabs)\\
+修改项目继续集成流程的提交，例如Travis，Jenkins，GitLab CI，BrowserStack，SauceLabs等等\\
+docs: Documentation only changes\\
+仅仅修改了文档，比如README，CHANGELOG，CONTRIBUTE等等\\
+feat: A new feature\\
+新功能\\
+fix: A bug fix\\
+修复bug\\
+perf: A code change that improves performance\\
+提升性能的代码改动\\
+refactor: A code change that neither fixes a bug nor adds a feature\\
+代码重构\\
+test: Adding missing tests or correcting existing tests\\
+测试用例的变动\\
+\\
+Commit Scope:\\
+indicate the place of the commit change.Should be the name of the npm package affected.Better to see this:\\
+https://github.com/angular/angular/blob/main/CONTRIBUTING.md\\
+\\
+<Blank Line>\\
+\\
+<content>\\
+\\
+<Blank Line>\\
+\\
+<footer>\\
 
 \end{document}
