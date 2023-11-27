@@ -4,6 +4,9 @@
 \usepackage{graphicx}
 \graphicspath{{pic}}
 \usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+%这两个包被用来输入商标R，TM符号和版权C符号。
 
 \title{Week 3: git}
 \author{Mayrain}
@@ -111,4 +114,64 @@ GithubCLI是一个命令行程序，通过这个程序可以使用命令行操�
     \includegraphics[width=\textwidth]{pic1_verfied.png}\\
 \end{figure}
 基于此我设置了github的公钥验证，在本地的git上打开了GPG签名。具体如何实现请详见b站tonycrane的录播。\\
+\\
+另外，github还给每个用户提供了二级域名，可以用仓库的组织形式去编写这一个域名作为自己的主页。对于每个仓库，他们也有自己的主页。\\
+\\
+github的action则是github提供的CI（持续集成）和CD（持续交付）工作。相当于配置自动化任务，在特定时间执行。\\
+可以通过配置文件，文件名为.github/workflows/workflow\_name.yml。编写可以看见github官方文档。
+\section{open-source software}
+\subsection{oss versus free software?}
+\noindent
+所谓开源软件，意思就是公开源代码。将其源代码放在github上并设置repo为public就是开源。\\
+自由软件则遵循四大原则：
+\begin{itemize}
+    \item 自由运行
+    \item 自由修改
+    \item 自由分发copy
+    \item 自由分发modify
+\end{itemize}
+注意开源并不等效于完全自由。自由和开源完全不一样，即便是开源，也可以通过规定开源证书来约束用户如何使用源代码。\\
+\\
+copyright: 版权所有，一切权利归软件作者所有\\
+书写方式：copyright\copyright 最初发表年-最初更新年 所有者. All rights reserved.\\
+copyleft: 版权归作者所有，其他一切权利归任何人所有。他一定是自由软件。GPL就是一种copyleft许可证。
+\subsection{license}
+\subsubsection{No license?}
+\noindent
+没有许可证意味着：\\
+原作者保留所有权利，不允许复制、分发、修改。如果需要使用，请联系原作者。（这个很反直觉，算是某种“最小权利”的约束吧。）
+\subsubsection{Yes it has license!}
+\noindent
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{pic2_license.png}
+\end{figure}
+也有一些变体，例如AGPL和LGPL
+\subsubsection{Unlicense!}
+\noindent
+这个概念需要和没有许可证（我没有特意设置）的情况区分，unlicense意味着放弃所有权利，该软件进入公共领域。\\
+\\
+最后，详细的部分请见：\\
+choosealicense.com
+\subsection{How to use a license?}
+\noindent
+在根目录下包含文件LICENSE即可，其中附上许可证内容。github可以通过一些模板生成许可证，也会根据内容识别并显示许可证。\\
+如果涉及多张许可证，都要放而且要声明许可证作用范围。\\
+\subsection{License unrelevent with software}
+\noindent
+一些许可证并不是用于软件的……而是用于知识。例如cc（creative commons）许可证，用于知识共享。一般是用于知识型的内容，比如笔记。\\
+详见：\\
+creativecommons.org/share-your-work/cclicense/\\
+官网上直接查看许可证内容，后缀改成txt就可以直接复制了。\\
+注意github目前只识别cc 0（公共领域），cc by（需要标明原作者），cc by-sa（需要采用相同许可证）。
+\section{github community}
+\noindent
+github的项目贡献，一般先看这些：
+\begin{itemize}
+    \item README
+    \item CONTRIBUTING
+    \item CODE\_OF\_CONDUCT
+\end{itemize}
+另外，提出issue之前，必须先查看是否有issue已经提出你的疑问！\\
+And that's all. Thanks.
 \end{document}
