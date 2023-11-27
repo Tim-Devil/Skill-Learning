@@ -5,6 +5,8 @@
 
 \usepackage{amsmath}
 \usepackage{graphicx}
+%对于图片来说，参数有width，height，angle，scale等。
+%若给graphicx或者是文档类赋予参数draft，则不会显示图片，但是会保留图片的位置（一个框，框里有文件名），这样可以加快编译速度。
 \usepackage{ctex}
 
 \usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
@@ -16,11 +18,16 @@
 
 \usepackage{multicol}
 
+\usepackage{enumerate}
+%只有加上这个才能使用enumerate的参数。
+
 %更多的宏包
 %https://zhuanlan.zhihu.com/p/43981639
 
 \title{week 4: latex}
-\author{Mayrain}
+\author{Mayrain\and vscode\thanks{mayrain@gmail.com}}
+%thanks命令可以用来表示脚注，但是只能用在author命令中。
+%在标题中如果要写多个作者尽可能用\and，而不是直接空格输名字。
 \date{\today}
 
 \begin{document}
@@ -94,4 +101,60 @@ dif{}f{}icult\\
 %相关链接：https://blog.csdn.net/xovee/article/details/123087349
 \section{docu structure}
 \subsection{Chap. and index}
+\begin{itemize}
+    \item[+] \verb|\chapter|(仅用于book和report)
+    \item[+] \verb|\section|
+    \item[+] \verb|\subsection|
+    \item[+] \verb|\subsubsection|
+    \item[-] \verb|\paragraph|
+    \item[-] \verb|\subparagraph|
+          \begin{enumerate}[i.]
+              \setcounter{enumi}{2}
+              %可以通过这个方式设定第一个编号是多少。从i+1开始，注意！
+              \item 以上内容可以加入参数表示短标题，显示在目录和页脚中，代替原有内容。
+              \item 还可以加入*表示不编号。
+              \item 利用\verb|\tableofcontents|可以生成目录。，不过需要编译两次。
+              \item 生成目录后，还可以通过\verb|\addcontentsline{toc}{section}{name}|手动添加目录项。
+              \item \verb|\appendix|命令可以生成附录。
+          \end{enumerate}
+\end{itemize}
+以上内容，前者是无序列表（itemize），后者是有序列表（enumerate）。最多嵌套4层。\\
+无序列表的符号可以自定义，在item上增加参数即可。enumerate也可以指定参数，不过一般都是i. , a. , a) , (1)云云
+\subsection{center, left and right}
+\noindent
+以下是命令：
+\begin{itemize}
+    \item \verb|\centering|
+    \item \verb|\raggedright|\footnote{注意这里raggedright对应的是左对齐，而不是右对齐！非常反直觉。}
+    \item \verb|\raggedleft|
+\end{itemize}
+以下是环境：
+\begin{itemize}
+    \item \verb|\begin{center}|
+    \item \verb|\begin{flushleft}|
+    \item \verb|\begin{flushright}|
+\end{itemize}
+对于环境来说，会在上下额外产生间距。命令则完全不会。\\
+命令会对后方所有部分都产生影响，而不是只影响一个para.
+\subsection{code environment}
+\noindent
+代码块可直接上verbatim环境。
+\begin{verbatim}
+    #include <stdio.h>
+
+    int main()
+    {
+        printf("Hello World!\n");
+        return 0;
+    }
+\end{verbatim}
+行内公式则可用\verb|\verb|\\
+\verb|printf("Hello              World!\n");|\\
+（我受不了了，原来用了这么久的verb命令是用在代码上。。。）\\
+利用\verb|\verb*|则可以令其显示（是真正的“显示”！）空格。\\
+\verb*|printf("Hello              World!\n");|\\
+listing宏包则可实现代码高亮，但是既然latex自己已经这么好用了那我们就不管了。
+\subsection{tabular}
+\noindent
+相关内容我放在另一个文档。
 \end{document}
